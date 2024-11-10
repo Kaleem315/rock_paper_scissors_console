@@ -4,5 +4,6 @@ The game has the following rules.
 => Rock beats Scissors (Rock crushes Scissors).
 => Scissors beats Paper (Scissors cut Paper).
 => Paper beats Rock (Paper covers Rock).
+=> Max 05 rounds.
 
 Good Luck playing.
