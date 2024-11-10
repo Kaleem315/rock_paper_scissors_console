@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // 1. first we will get input from the user regarding 3 opitons : (rock, paper or scissors)
+        // 2. after the user has given the input, check if the input is correct according to given createria.
+        // 3. if incorrect, alert that input is incorrect and get another input.
+        // 4. store correct input in a variable and log an incremental attemp to keep track.
+        let userChoice = "";
+        let compChoice = "";
+        let rounds = 0;
+        const log = console.log
+        const option1 = "rock";
+        const option2 = "paper";
+        const option3 = "scissors";
+
+        function getUserInput() {
+            let getChoice = (prompt("What would you choose to fight with? ")).toLowerCase();
+            if(getChoice === option1 || getChoice === option2 || getChoice === option3) {
+                userChoice = getChoice;
+                rounds ++;
+                
+            } else {
+                log("try againt");
+                alert("pick the correct option.");
+                getUserInput();
+            }
+        }
+        // 5. get an input from the computer regarding the createria and store in another variable.
+
+        function getCompInput(){
+            let getChoice = Math.random() * 100;
+            if(getChoice > 0 && getChoice < 33) {
+                compChoice = "rock";
+            } else if (getChoice > 33 && getChoice < 66) {
+                compChoice = "paper";
+            } else if(getChoice > 66 && getChoice < 100 ) {
+                compChoice = "scissors";
+            } else {
+                compChoice = "wrong input";
+            }
+        }
+        // 6. compare both variable according to game rules and decide who won, show them congrats or boo.
+        let userScore = 0;
+        let compScore = 0;
+        let tryAgain = "";
+        function playGame(){
+            while(rounds < 5){
+            getUserInput();
+            log(`You: ${userChoice}`);
+            getCompInput();
+            log(`Computer: ${compChoice}`);
+            if(userChoice === compChoice) {
+                ++userScore && ++compScore;
+                log("You both tied. Next Round")
+                ++rounds;
+            } else if((userChoice === "rock" && compChoice === "scissors") 
+                    ||(userChoice === "paper" && compChoice === "rock")
+                    ||(userChoice === "scissors" && compChoice === "paper")){
+                log("Congratulations!! You won this round");
+                ++rounds;
+                ++userScore;
+            } else if((compChoice === "rock" && userChoice === "scissors") 
+                    ||(compChoice === "paper" && userChoice === "rock")
+                    ||(compChoice === "scissors" && userChoice === "paper")) {
+                          log("Alas!! You lost this round");
+                          ++rounds;
+                          ++compScore;
+                    }
+                }
+// 7. after x number of attempts show the final result with either win or lose for the user.
+        if(userScore > compScore){
+            alert("Congratulations!! You Won... Bingo!")
+            log(`Your total score is ${userScore}`);
+            log(`Congratulations, You defeated the computer by ${userScore - compScore} points.`)
+            rounds = 0;
+        } else if(userScore < compScore){
+            alert("You Lost... Try Again!")
+            log(`Your total score is ${userScore}`);
+            log(`You lost by ${compScore - userScore} points.`)
+            rounds = 0;
+    } tryAgain = prompt("Wanna play again?").toLowerCase();
+    if(tryAgain = "y"){
+        playGame();
+    } else {
+        alert("Thank you for your time. Do come again.")
+    }
+}
+        
+        
+        // 8. show an prompt for replay and if chosen loop the whole thing again.
+    </script>
+</head>
+<body>
+
+</body>
+</html>
